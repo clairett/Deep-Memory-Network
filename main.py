@@ -1,7 +1,7 @@
 import pprint
 import tensorflow as tf
 from data import *
-from model_with_mask import MemN2N
+from model import MemN2N
 
 pp = pprint.PrettyPrinter()
 
