@@ -114,7 +114,6 @@ class MemN2N(object):
 
         self.lr = tf.Variable(self.current_lr)
         self.opt = tf.train.AdagradOptimizer(self.lr)
-        # self.opt = tf.train.GradientDescentOptimizer(self.lr)
 
         params = [self.A, self.C, self.C_B, self.W, self.BL_W, self.BL_B]
 
@@ -241,14 +240,6 @@ class MemN2N(object):
 
         return cost / float(len(source_data)), acc / float(len(source_data)), predicts, labels, sentences, targets
 
-    def analyze(self, labels, predicts, text, model, aspects):
-        outfile = codecs.open(model + '_result.tsv', 'w', 'utf8')
-        map = {1: 'Positive', 2: 'Negative'}
-        for i in range(len(labels)):
-            line = text[i] + '\t' + map[predicts[i]] + '\t' + map[labels[i]] + '\t' + aspects[i] + '\n'
-            outfile.write(line)
-        outfile.close()
-
     def run(self, train_data, test_data):
         print('training...')
         self.sess.run(self.A.assign(self.pre_trained_context_wt))
@@ -261,12 +252,6 @@ class MemN2N(object):
             test_loss, test_acc, predicts, labels, sentences, targets = self.test(test_data)
             if best_acc < test_acc*100:
                 best_acc = test_acc*100
-                text, aspects = [], []
-                for sentence in sentences:
-                    text.append(' '.join(self.source_idx2word[word] for word in sentence))
-                for target in targets:
-                    aspects.append(self.target_idx2word[target])
-                self.analyze(labels, predicts, text, 'deepMN', aspects)
             print('train-loss=%.2f;train-acc=%.2f;test-acc=%.2f;' % (train_loss, train_acc*100, test_acc*100))
             self.log_loss.append([train_loss, test_loss])
         print('best-acc=%.2f' % best_acc)
