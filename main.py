@@ -1,6 +1,6 @@
 import pprint
 import tensorflow as tf
-from binary_data import *
+from data import *
 from model_with_mask import MemN2N
 
 pp = pprint.PrettyPrinter()
@@ -18,8 +18,6 @@ flags.DEFINE_float("init_std", 0.01, "weight initialization std [0.05]")
 flags.DEFINE_float("max_grad_norm", 100, "clip gradients to this norm [100]")
 flags.DEFINE_string("pretrain_embeddings", "glove-common_crawl_840",
                     "pre-trained word embeddings [glove-wikipedia_gigaword, glove-common_crawl_48, glove-common_crawl_840]")
-# flags.DEFINE_string("train_data", "data/Restaurants_Train_v2.xml", "train gold data set path [./data/Restaurants_Train_v2.xml]")
-# flags.DEFINE_string("test_data", "data/Restaurants_Test_Gold.xml", "test gold data set path [./data/Restaurants_Test_Gold.xml]")
 flags.DEFINE_string("train_data", "data/Restaurants_Train_v2.xml.seg", "train gold data set path [./data/Laptops_Train.xml.seg]")
 flags.DEFINE_string("test_data", "data/Restaurants_Test_Gold.xml.seg", "test gold data set path [./data/Laptops_Test_Gold.xml.seg]")
 flags.DEFINE_boolean("show", False, "print progress [False]")
