@@ -10,6 +10,7 @@ For example, in sentence ''great food but the service was dreadful!'', the senti
 
 ### Quick Start
 Install this [quick GLOVE embeddings loading tool](https://github.com/vzhong/embeddings)
+Runs on python3 and tensorflow 1.4.1
 
 Train a model with 3 hops on the [Restaurant](http://alt.qcri.org/semeval2016/task5/) dataset.
 ```
