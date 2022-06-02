@@ -8,7 +8,7 @@ enum34==1.1.6
 future==0.16.0
 gast==0.2.0
 grpcio==1.14.2
-html5lib==0.9999999
+html5lib==0.99999999
 idna==2.7
 Markdown==2.6.11
 nltk==3.3
